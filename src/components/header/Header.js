@@ -11,7 +11,9 @@ import HeaderOption from "./HeaderOption";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../../features/userSlice";
 import { auth } from "../../Firebase";
+import {useIMQA} from "imqa-react-sdk";
 const Header = () => {
+  const IMQARef = useIMQA(); // 삽입
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const logoutOfApp = () => {
@@ -19,6 +21,7 @@ const Header = () => {
     auth.signOut();
   };
   return (
+      <div ref={IMQARef}>
     <div className='header'>
       <div className='header_left'>
         <img
@@ -44,6 +47,7 @@ const Header = () => {
           title='me'
         />
       </div>
+    </div>
     </div>
   );
 };

@@ -4,7 +4,9 @@ import { Avatar } from "@material-ui/core";
 import background from "../../assets/images/background.jfif";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
+import {useIMQA} from "imqa-react-sdk";
 const Sidebar = () => {
+    const IMQARef = useIMQA(); // 삽입
   const user = useSelector(selectUser);
   const recentItem = (topic) => {
     return (
@@ -15,6 +17,7 @@ const Sidebar = () => {
     );
   };
   return (
+      <div ref={IMQARef}>
     <div className='sidebar'>
       <div className='sidebar_top'>
         <img src={background} alt='' />
@@ -44,6 +47,7 @@ const Sidebar = () => {
         {recentItem("developer")}
         {recentItem("UX UI")}
       </div>
+    </div>
     </div>
   );
 };

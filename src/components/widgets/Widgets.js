@@ -3,7 +3,9 @@ import "./Widgets.css";
 import InfoIcon from "@material-ui/icons/Info";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import { Avatar } from "@material-ui/core";
+import {useIMQA} from "imqa-react-sdk";
 const Widgets = () => {
+    const IMQARef = useIMQA(); // 삽입
   const newsArticle = (heading, subtitle, avatar) => (
     <div className='widgets_article'>
       <div className='widgets_articleLeft'>
@@ -24,6 +26,7 @@ const Widgets = () => {
     </div>
   );
   return (
+      <div ref={IMQARef}>
     <div className='widgets'>
       <div className='widgets_top'>
         <div className='widgets_header'>
@@ -56,6 +59,7 @@ const Widgets = () => {
         {newsArticle("Customer Service Foundations", "Jeff Toister")}
         {newsArticle("Communication within Teams", "Daisy Lovelace")}
       </div>
+    </div>
     </div>
   );
 };

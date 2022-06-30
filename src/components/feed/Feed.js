@@ -15,7 +15,10 @@ import { db } from "../../Firebase";
 import firebase from "firebase";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../features/userSlice";
+import { useIMQA } from "imqa-react-sdk";
+
 const Feed = () => {
+  const IMQARef = useIMQA(); // 삽입
   const [message, setMessage] = useState("");
   const [posts, setPosts] = useState([]);
   const user = useSelector(selectUser);
@@ -45,14 +48,17 @@ const Feed = () => {
   };
   const inputOption = (Icon, title) => {
     return (
+        <div ref={IMQARef}>
       <div className='feed_inputOption'>
         {Icon}
         <h4>{title}</h4>
       </div>
+      </div>
     );
   };
   return (
-    <div className='feed'>
+      <div ref={IMQARef}>
+      <div className='feed'>
       {/* Top Input  */}
       <div className='feed_inputContainer'>
         <div className='feed_input'>
@@ -110,6 +116,7 @@ const Feed = () => {
         ))}
       </FlipMove>
     </div>
+      </div>
   );
 };
 
